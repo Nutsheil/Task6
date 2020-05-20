@@ -28,4 +28,6 @@ typedef struct
 	bool new_bitmap;
 }My_Paint;
 
-My_Paint Settings();
+My_Paint MYPAINT;
+
+void Settings();

@@ -12,8 +12,6 @@ ATOM RegisterMyClass(HINSTANCE hInstance);
 int CreateMyWindow(HINSTANCE hInstance, int nCmdShow);
 /////////////////////////////////////
 
-My_Paint MYPAINT;
-
 void CreateMyMenu()
 {
 	hMenu = CreateMenu();
@@ -130,7 +128,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		}
 		case 6:
 		{
-			MYPAINT = Settings();
+			Settings();
 			break;
 		}
 		default:

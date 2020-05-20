@@ -11,9 +11,7 @@ ATOM registerMyClass(HINSTANCE hInstance, LPCWSTR szClassName, WNDPROC WndProcPa
 HWND createMyWindow(LPCWSTR windowName, LPCWSTR szClassName, WNDPROC WndProcParam, HWND hParentWindow, RECT rect);
 /////////////////////////////////////
 
-My_Paint MYPAINT;
-
-My_Paint Settings()
+void Settings()
 {
 	hWnd = createMyWindow("Settings", "Window2", WndProc2, NULL, (RECT) { 200, 200, 400, 260 });
 
@@ -31,8 +29,6 @@ My_Paint Settings()
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
-
-	return MYPAINT;
 }
 
 LRESULT CALLBACK WndProc2(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
