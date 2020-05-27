@@ -14,7 +14,7 @@ HWND createMyWindow(LPCWSTR windowName, LPCWSTR szClassName, WNDPROC WndProcPara
 RGBTRIPLE MyPensilColor;
 int MyPensilWidth, MyEraserWidth;
 
-void Settings(My_Paint* paint)
+void Settings(RGBTRIPLE* PColor, int* PWidth, int* EWidth)
 {
 	hWnd = createMyWindow("Settings", "Window2", WndProc2, NULL, (RECT) { 200, 200, 400, 260 });
 
@@ -33,9 +33,12 @@ void Settings(My_Paint* paint)
 		DispatchMessage(&msg);
 	}
 
-	paint->Pensil_Color = MyPensilColor;
-	paint->Pensil_Width = MyPensilWidth;
-	paint->Eraser_Width = MyEraserWidth;
+	*PColor = MyPensilColor;
+	*PWidth = MyPensilWidth;
+	*EWidth = MyEraserWidth;
+	//paint->Pensil_Color = MyPensilColor;
+	//paint->Pensil_Width = MyPensilWidth;
+	//paint->Eraser_Width = MyEraserWidth;
 }
 
 LRESULT CALLBACK WndProc2(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)

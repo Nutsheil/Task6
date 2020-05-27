@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define DefaultPensilColor 0x000000
 #define DefaultPensilWeigth 1
 #define DefaultEraserWeigth 10
 #define DefaultBitmapSizeX 500
@@ -28,4 +27,4 @@ typedef struct
 	bool new_bitmap;
 }My_Paint;
 
-void Settings(My_Paint* paint);
+void Settings(RGBTRIPLE* PColor, int* PWidth, int* EWidth);

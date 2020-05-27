@@ -130,7 +130,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		}
 		case 6:
 		{
-			Settings(&MYPAINT);
+			Settings(&MYPAINT.Pensil_Color, &MYPAINT.Pensil_Width, &MYPAINT.Eraser_Width);
 			break;
 		}
 		default:
