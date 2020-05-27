@@ -11,11 +11,14 @@ ATOM registerMyClass(HINSTANCE hInstance, LPCWSTR szClassName, WNDPROC WndProcPa
 HWND createMyWindow(LPCWSTR windowName, LPCWSTR szClassName, WNDPROC WndProcParam, HWND hParentWindow, RECT rect);
 /////////////////////////////////////
 
-void Settings()
+RGBTRIPLE MyPensilColor;
+int MyPensilWidth, MyEraserWidth;
+
+void Settings(My_Paint* paint)
 {
 	hWnd = createMyWindow("Settings", "Window2", WndProc2, NULL, (RECT) { 200, 200, 400, 260 });
 
-	for(int i=0;i<3;i++)
+	for (int i = 0; i < 3; i++)
 		PensilColor[i] = CreateWindow("EDIT", "", WS_BORDER | WS_VISIBLE | WS_CHILD | ES_LEFT | ES_MULTILINE, 40, 10 + 30 * i, 60, 20, hWnd, NULL, NULL, NULL);
 
 	PensilWidth = CreateWindow("EDIT", "", WS_BORDER | WS_VISIBLE | WS_CHILD | ES_LEFT | ES_MULTILINE, 120, 100, 60, 20, hWnd, NULL, NULL, NULL);
@@ -29,6 +32,10 @@ void Settings()
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 	}
+
+	paint->Pensil_Color = MyPensilColor;
+	paint->Pensil_Width = MyPensilWidth;
+	paint->Eraser_Width = MyEraserWidth;
 }
 
 LRESULT CALLBACK WndProc2(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -50,16 +57,16 @@ LRESULT CALLBACK WndProc2(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			int aaa;
 
 			GetWindowTextW(PensilColor[0], number[0], 3);
-			MYPAINT.Pensil_Color.rgbtRed = _wtoi(number[0]);
+			MyPensilColor.rgbtRed = _wtoi(number[0]);
 			GetWindowTextW(PensilColor[1], number[1], 3);
-			MYPAINT.Pensil_Color.rgbtGreen = _wtoi(number[1]);
+			MyPensilColor.rgbtGreen = _wtoi(number[1]);
 			GetWindowTextW(PensilColor[2], number[2], 3);
-			MYPAINT.Pensil_Color.rgbtBlue = _wtoi(number[2]);
+			MyPensilColor.rgbtBlue = _wtoi(number[2]);
 
-			GetWindowText(PensilWidth, number[3], 3);
-			MYPAINT.Pensil_Weigth = _wtoi(number[3]);
-			GetWindowText(EraserWidth, number[4], 3);
-			MYPAINT.Eraser_Weigth = _wtoi(number[4]);
+			GetWindowTextW(PensilWidth, number[3], 3);
+			MyPensilWidth = _wtoi(number[3]);
+			GetWindowTextW(EraserWidth, number[4], 3);
+			MyEraserWidth = _wtoi(number[4]);
 
 			DestroyWindow(hWnd);
 			break;

@@ -23,11 +23,9 @@ typedef struct
 	POINT FirstCoord, SecondCoord;
 	selected_object object;
 	RGBTRIPLE Pensil_Color;
-	int Pensil_Weigth;
-	int Eraser_Weigth;
+	int Pensil_Width;
+	int Eraser_Width;
 	bool new_bitmap;
 }My_Paint;
 
-My_Paint MYPAINT;
-
-void Settings();
+void Settings(My_Paint* paint);

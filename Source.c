@@ -12,6 +12,8 @@ ATOM RegisterMyClass(HINSTANCE hInstance);
 int CreateMyWindow(HINSTANCE hInstance, int nCmdShow);
 /////////////////////////////////////
 
+My_Paint MYPAINT;
+
 void CreateMyMenu()
 {
 	hMenu = CreateMenu();
@@ -38,8 +40,8 @@ void SetDeafultSetting()
 	MYPAINT.Pensil_Color.rgbtRed = 0;
 	MYPAINT.Pensil_Color.rgbtGreen = 0;
 	MYPAINT.Pensil_Color.rgbtBlue = 0;
-	MYPAINT.Pensil_Weigth = DefaultPensilWeigth;
-	MYPAINT.Eraser_Weigth = DefaultEraserWeigth;
+	MYPAINT.Pensil_Width = DefaultPensilWeigth;
+	MYPAINT.Eraser_Width = DefaultEraserWeigth;
 	MYPAINT.object = other;
 	MYPAINT.new_bitmap = false;
 }
@@ -59,9 +61,9 @@ void Draw(HDC hdc)
 	HPEN myPen = NULL;
 
 	if (MYPAINT.object == pensil)
-		myPen = CreatePen(PS_SOLID, MYPAINT.Pensil_Weigth, RGB(MYPAINT.Pensil_Color.rgbtRed, MYPAINT.Pensil_Color.rgbtGreen, MYPAINT.Pensil_Color.rgbtBlue));
+		myPen = CreatePen(PS_SOLID, MYPAINT.Pensil_Width, RGB(MYPAINT.Pensil_Color.rgbtRed, MYPAINT.Pensil_Color.rgbtGreen, MYPAINT.Pensil_Color.rgbtBlue));
 	if (MYPAINT.object == eraser)
-		myPen = CreatePen(PS_SOLID, MYPAINT.Eraser_Weigth, RGB(255, 255, 255));
+		myPen = CreatePen(PS_SOLID, MYPAINT.Eraser_Width, RGB(255, 255, 255));
 
 	SelectObject(hdc, myPen);
 	MoveToEx(hdc, MYPAINT.FirstCoord.x, MYPAINT.FirstCoord.y, NULL);
@@ -128,7 +130,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		}
 		case 6:
 		{
-			Settings();
+			Settings(&MYPAINT);
 			break;
 		}
 		default:
